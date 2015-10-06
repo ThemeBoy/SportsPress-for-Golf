@@ -309,9 +309,6 @@ class SportsPress_Golf {
 				case 'Edit Venue':
 					$translated_text = __( 'Edit Course', 'sportspress' );
 					break;
-				case 'Box Score':
-					$translated_text = __( 'Scorecard', 'sportspress' );
-					break;
 				case 'League Tables':
 					$translated_text = __( 'Leaderboards', 'sportspress' );
 					break;
