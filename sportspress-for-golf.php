@@ -1,14 +1,11 @@
 <?php
 /*
- * Plugin Name: SportsPress for Golf
- * Plugin URI: http://themeboy.com/
- * Description: A suite of golf features for SportsPress.
- * Author: ThemeBoy
- * Author URI: http://themeboy.com/
- * Version: 0.9
- *
- * Text Domain: sportspress-for-golf
- * Domain Path: /languages/
+Plugin Name: SportsPress for Golf
+Plugin URI: http://themeboy.com/
+Description: A suite of golf features for SportsPress.
+Author: ThemeBoy
+Author URI: http://themeboy.com/
+Version: 0.9.1
 */
 
 // Exit if accessed directly
@@ -20,7 +17,7 @@ if ( ! class_exists( 'SportsPress_Golf' ) ) :
  * Main SportsPress Golf Class
  *
  * @class SportsPress_Golf
- * @version	0.9
+ * @version	0.9.1
  */
 class SportsPress_Golf {
 
@@ -69,7 +66,7 @@ class SportsPress_Golf {
 	*/
 	private function define_constants() {
 		if ( !defined( 'SP_GOLF_VERSION' ) )
-			define( 'SP_GOLF_VERSION', '0.9' );
+			define( 'SP_GOLF_VERSION', '0.9.1' );
 
 		if ( !defined( 'SP_GOLF_URL' ) )
 			define( 'SP_GOLF_URL', plugin_dir_url( __FILE__ ) );
@@ -128,10 +125,10 @@ class SportsPress_Golf {
 		$holes = get_post_meta( $post->ID, 'sp_holes', true );
 		?>
 		<div class="sp-event-holes-field">
-			<p><strong><?php _e( 'Round', 'sportspress-for-golf' ); ?></strong></p>
+			<p><strong><?php _e( 'Round', 'sportspress' ); ?></strong></p>
 			<p>
 				<input name="sp_holes" type="number" step="1" min="0" class="small-text" placeholder="18" value="<?php echo $holes; ?>">
-				<?php _e( 'holes', 'sportspress-for-golf' ); ?>
+				<?php _e( 'holes', 'sportspress' ); ?>
 			</p>
 		</div>
 		<?php
@@ -163,7 +160,7 @@ class SportsPress_Golf {
 		if ( ! $post_id ) return;
 		$holes = (int) get_post_meta( $post_id, 'sp_holes', true );
 		if ( ! $holes ) $holes = 18;
-		$data[ __( 'Holes', 'sportspress-for-golf' ) ] = $holes;
+		$data[ __( 'Holes', 'sportspress' ) ] = $holes;
 		return $data;
 	}
 
@@ -179,7 +176,7 @@ class SportsPress_Golf {
 			<?php if ( $numbers ) { ?>
 				<td>&nbsp;</td>
 			<?php } ?>
-			<td><strong><?php _e( 'Par', 'sportspress-for-golf' ); ?></strong></td>
+			<td><strong><?php _e( 'Par', 'sportspress' ); ?></strong></td>
 			<?php if ( ! empty( $positions ) ) { ?>
 				<td>&nbsp;</td>
 			<?php } ?>
@@ -215,7 +212,7 @@ class SportsPress_Golf {
 					if ( $show_numbers ) {
 						echo '<td class="data-number">&nbsp;</td>';
 					}
-					echo '<td class="data-name">' . __( 'Par', 'sportspress-for-golf' ) . '</td>';
+					echo '<td class="data-name">' . __( 'Par', 'sportspress' ) . '</td>';
 				endif;
 
 				$row = sp_array_value( $data, -1, array() );
@@ -256,8 +253,8 @@ class SportsPress_Golf {
 	 * Add par to result equation builder.
 	*/
 	public function equation_options( $options = array() ) {
-		$options[ __( 'Performance', 'sportspress-for-golf' ) ][ '$strokes' ] = __( 'Strokes', 'sportspress-for-golf' );
-		$options[ __( 'Performance', 'sportspress-for-golf' ) ][ '$par' ] = __( 'Par', 'sportspress-for-golf' );
+		$options[ __( 'Performance', 'sportspress' ) ][ '$strokes' ] = __( 'Strokes', 'sportspress' );
+		$options[ __( 'Performance', 'sportspress' ) ][ '$par' ] = __( 'Par', 'sportspress' );
 		return $options;
 	}
 
@@ -286,49 +283,52 @@ class SportsPress_Golf {
 		if ( $domain == 'sportspress' ) {
 			switch ( $untranslated_text ) {
 				case 'Events':
-					$translated_text = __( 'Rounds', 'sportspress-for-golf' );
+					$translated_text = __( 'Rounds', 'sportspress' );
 					break;
 				case 'Event':
-					$translated_text = __( 'Round', 'sportspress-for-golf' );
+					$translated_text = __( 'Round', 'sportspress' );
 					break;
 				case 'Add New Event':
-					$translated_text = __( 'Add New Round', 'sportspress-for-golf' );
+					$translated_text = __( 'Add New Round', 'sportspress' );
 					break;
 				case 'Edit Event':
-					$translated_text = __( 'Edit Round', 'sportspress-for-golf' );
+					$translated_text = __( 'Edit Round', 'sportspress' );
 					break;
 				case 'View Event':
-					$translated_text = __( 'View Round', 'sportspress-for-golf' );
+					$translated_text = __( 'View Round', 'sportspress' );
 					break;
 				case 'View all events':
-					$translated_text = __( 'View all rounds', 'sportspress-for-golf' );
+					$translated_text = __( 'View all rounds', 'sportspress' );
 					break;
 				case 'Venues':
-					$translated_text = __( 'Courses', 'sportspress-for-golf' );
+					$translated_text = __( 'Courses', 'sportspress' );
 					break;
 				case 'Venue':
-					$translated_text = __( 'Course', 'sportspress-for-golf' );
+					$translated_text = __( 'Course', 'sportspress' );
 					break;
 				case 'Edit Venue':
-					$translated_text = __( 'Edit Course', 'sportspress-for-golf' );
+					$translated_text = __( 'Edit Course', 'sportspress' );
+					break;
+				case 'Box Score':
+					$translated_text = __( 'Scorecard', 'sportspress' );
 					break;
 				case 'League Tables':
-					$translated_text = __( 'Leaderboards', 'sportspress-for-golf' );
+					$translated_text = __( 'Leaderboards', 'sportspress' );
 					break;
 				case 'League Table':
-					$translated_text = __( 'Leaderboard', 'sportspress-for-golf' );
+					$translated_text = __( 'Leaderboard', 'sportspress' );
 					break;
 				case 'Add New League Table':
-					$translated_text = __( 'Add New Leaderboard', 'sportspress-for-golf' );
+					$translated_text = __( 'Add New Leaderboard', 'sportspress' );
 					break;
 				case 'Edit League Table':
-					$translated_text = __( 'Edit Leaderboard', 'sportspress-for-golf' );
+					$translated_text = __( 'Edit Leaderboard', 'sportspress' );
 					break;
 				case 'View League Table':
-					$translated_text = __( 'View Leaderboard', 'sportspress-for-golf' );
+					$translated_text = __( 'View Leaderboard', 'sportspress' );
 					break;
 				case 'Adjustments':
-					$translated_text = __( 'Handicaps', 'sportspress-for-golf' );
+					$translated_text = __( 'Handicaps', 'sportspress' );
 					break;
 			}
 		}
@@ -345,11 +345,11 @@ class SportsPress_Golf {
 	public function add_venue_fields() {
 		?>
 		<div class="form-field">
-			<label for="term_meta[sp_rating]"><?php _e( 'Rating', 'sportspress-for-golf' ); ?></label>
+			<label for="term_meta[sp_rating]"><?php _e( 'Rating', 'sportspress' ); ?></label>
 			<input type="text" class="sp-venue-rating" name="term_meta[sp_rating]" id="term_meta[sp_rating]" value="72">
 		</div>
 		<div class="form-field">
-			<label for="term_meta[sp_slope]"><?php _e( 'Slope', 'sportspress-for-golf' ); ?></label>
+			<label for="term_meta[sp_slope]"><?php _e( 'Slope', 'sportspress' ); ?></label>
 			<input type="text" class="sp-venue-slope" name="term_meta[sp_slope]" id="term_meta[sp_slope]" value="113">
 		</div>
 	<?php
@@ -365,13 +365,13 @@ class SportsPress_Golf {
 	 	$t_id = $term->term_id;
 		$term_meta = get_option( "taxonomy_$t_id" ); ?>
 		<tr class="form-field">
-			<th scope="row" valign="top"><label for="term_meta[sp_rating]"><?php _e( 'Rating', 'sportspress-for-golf' ); ?></label></th>
+			<th scope="row" valign="top"><label for="term_meta[sp_rating]"><?php _e( 'Rating', 'sportspress' ); ?></label></th>
 			<td>
 				<input type="text" class="sp-venue-rating" name="term_meta[sp_rating]" id="term_meta[sp_rating]" value="<?php echo esc_attr( isset( $term_meta['sp_rating'] ) ) ? esc_attr( $term_meta['sp_rating'] ) : ''; ?>">
 			</td>
 		</tr>
 		<tr class="form-field">
-			<th scope="row" valign="top"><label for="term_meta[sp_slope]"><?php _e( 'Slope', 'sportspress-for-golf' ); ?></label></th>
+			<th scope="row" valign="top"><label for="term_meta[sp_slope]"><?php _e( 'Slope', 'sportspress' ); ?></label></th>
 			<td>
 				<input type="text" class="sp-venue-slope" name="term_meta[sp_slope]" id="term_meta[sp_slope]" value="<?php echo esc_attr( isset( $term_meta['sp_slope'] ) ) ? esc_attr( $term_meta['sp_slope'] ) : ''; ?>">
 			</td>
@@ -387,8 +387,8 @@ class SportsPress_Golf {
 	 * @return array
 	 */
 	public function venue_columns( $columns ) {
-		$columns['sp_rating'] = __( 'Rating', 'sportspress-for-golf' );
-		$columns['sp_slope'] = __( 'Slope', 'sportspress-for-golf' );
+		$columns['sp_rating'] = __( 'Rating', 'sportspress' );
+		$columns['sp_slope'] = __( 'Slope', 'sportspress' );
 		return $columns;
 	}
 

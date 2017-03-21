@@ -3,8 +3,8 @@ Contributors: ThemeBoy, brianmiyaji, aylaview
 Tags: sport, sports, players, statistics, stats, metrics, data, fixtures, results, standings, leaderboards, golf
 Donate link: http://tboy.co/donate
 Requires at least: 3.8
-Tested up to: 4.3
-Stable tag: 0.9
+Tested up to: 4.7
+Stable tag: 0.9.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -30,9 +30,12 @@ SportsPress for Golf is currently in Beta. Please feel free to share your feedba
 
 Looking for more advanced golf functionality? Upgrade to [SportsPress Pro](http://tboy.co/pro) to get access to more advanced features for your golf club website.
 
-= SportsPress Themes for Clubs =
+= SportsPress Themes for Athletes =
+* [Courtside](http://tboy.co/courtside)
 * [Football Club](http://tboy.co/fc)
 * [Premier](http://tboy.co/premier)
+* [Emblem](http://tboy.co/emblem)
+* [Marquee](http://tboy.co/marquee)
 
 = Please Rate, Vote, and Enjoy! =
 Your feedback is much appreciated and makes all the difference in improving SportsPress for Golf.
@@ -82,6 +85,10 @@ Yes; SportsPress for Golf will work with any theme, but may require some styling
 Yes, CSV importers are included with the core SportsPress plugin. Go to Tools > Import and choose from one of the SportsPress CSV importers.
 
 == Changelog ==
+
+= 0.9.1 =
+* Tweak - Update TGMPA library.
+* Localization - Update text domain for golf-related strings.
 
 = 0.9 =
 * Feature - Add a row to record par for each hole.
