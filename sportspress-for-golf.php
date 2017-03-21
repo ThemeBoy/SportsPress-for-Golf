@@ -25,8 +25,6 @@ class SportsPress_Golf {
 	 * Constructor.
 	 */
 	public function __construct() {
-		register_activation_hook( __FILE__, array( $this, 'install' ) );
-
 		// Define constants
 		$this->define_constants();
 
@@ -64,29 +62,6 @@ class SportsPress_Golf {
 
 		// Include required files
 		$this->includes();
-	}
-
-	/**
-	 * Install.
-	*/
-	public static function install() {
-		if ( get_page_by_path( 'owngoals', OBJECT, 'sp_performance' ) ) return;
-
-		$post = array(
-			'post_title' => 'Own Goals',
-			'post_name' => 'owngoals',
-			'post_type' => 'sp_performance',
-			'post_excerpt' => 'Own goals',
-			'menu_order' => 200,
-			'post_status' => 'publish',
-		);
-
-		$id = wp_insert_post( $post );
-
-		update_post_meta( $id, 'sp_icon', 'soccerball' );
-		update_post_meta( $id, 'sp_color', '#d4000f' );
-		update_post_meta( $id, 'sp_singular', 'Own Goal' );
-		update_post_meta( $id, 'sp_timed', 1 );
 	}
 
 	/**
