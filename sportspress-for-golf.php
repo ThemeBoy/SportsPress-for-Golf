@@ -25,6 +25,8 @@ class SportsPress_Golf {
 	 * Constructor.
 	 */
 	public function __construct() {
+		register_activation_hook( __FILE__, array( $this, 'install' ) );
+
 		// Define constants
 		$this->define_constants();
 
@@ -57,8 +59,34 @@ class SportsPress_Golf {
 		add_filter( 'sportspress_player_admin_columns', array( $this, 'remove_player_admin_position_column' ) );
 		add_filter( 'sportspress_taxonomies', array( $this, 'taxonomies' ) );
 
+		// Define default sport
+		add_filter( 'sportspress_default_sport', array( $this, 'default_sport' ) );
+
 		// Include required files
 		$this->includes();
+	}
+
+	/**
+	 * Install.
+	*/
+	public static function install() {
+		if ( get_page_by_path( 'owngoals', OBJECT, 'sp_performance' ) ) return;
+
+		$post = array(
+			'post_title' => 'Own Goals',
+			'post_name' => 'owngoals',
+			'post_type' => 'sp_performance',
+			'post_excerpt' => 'Own goals',
+			'menu_order' => 200,
+			'post_status' => 'publish',
+		);
+
+		$id = wp_insert_post( $post );
+
+		update_post_meta( $id, 'sp_icon', 'soccerball' );
+		update_post_meta( $id, 'sp_color', '#d4000f' );
+		update_post_meta( $id, 'sp_singular', 'Own Goal' );
+		update_post_meta( $id, 'sp_timed', 1 );
 	}
 
 	/**
@@ -98,6 +126,7 @@ class SportsPress_Golf {
 				'name'        => 'SportsPress',
 				'slug'        => 'sportspress',
 				'required'    => true,
+				'version'     => '2.3',
 				'is_callable' => array( 'SportsPress', 'instance' ),
 			),
 		);
@@ -429,6 +458,13 @@ class SportsPress_Golf {
 			unset( $taxonomies[ $key ] );
 		}
 		return $taxonomies;
+	}
+
+	/**
+	 * Define default sport.
+	*/
+	public function default_sport() {
+		return 'golf';
 	}
 }
 
