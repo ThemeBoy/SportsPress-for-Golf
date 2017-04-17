@@ -87,6 +87,7 @@ Yes, CSV importers are included with the core SportsPress plugin. Go to Tools > 
 == Changelog ==
 
 = 0.9.1 =
+* Feature - Apply default sport setting for smoother installation.
 * Tweak - Update TGMPA library.
 * Localization - Update text domain for golf-related strings.
 
