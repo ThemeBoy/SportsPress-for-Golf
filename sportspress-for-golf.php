@@ -43,6 +43,9 @@ class SportsPress_Golf {
 		add_filter( 'sportspress_equation_options', array( $this, 'equation_options' ) );
 		add_filter( 'sportspress_event_result_equation_vars', array( $this, 'equation_vars' ), 10, 3 );
 
+		// Format results to reflect if over or under par
+		add_filter( 'sportspress_event_results', array( $this, 'results' ), 10, 4 );
+
 		// Add number of holes to event meta box
 		add_action( 'sportspress_event_details_meta_box', array( $this, 'meta_box_holes' ) );
 		add_action( 'sportspress_process_sp_event_meta', array( $this, 'save_holes' ), 10, 2 );
@@ -278,6 +281,21 @@ class SportsPress_Golf {
 		}
 
 		return $vars;
+	}
+
+	/**
+	 * Format results to reflect if over or under par.
+	*/
+	public function results( $results = array(), $id = 0 ) {
+		foreach ( $results as $team_id => $team_results ) {
+			if ( ! is_array( $team_results ) ) continue;
+			if ( ! $team_id ) continue;
+			foreach ( $team_results as $key => $value ) {
+				if ( 'par' !== $key ) continue;
+				$results[ $team_id ][ $key ] = sprintf( "%+d", $value );
+			}
+		}
+		return $results;
 	}
 
 	/** 
